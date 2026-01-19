@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品圖層選擇器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="layer-selector">
+    <!-- 圖層容器 -->
+    <div class="layer-container" id="layerContainer">
+      <!-- 底圖 -->
+      <img src="images/base.png" alt="商品底圖" class="layer base-layer" id="baseLayer">
+
+      <!-- 規格1圖層 -->
+      <img src="" alt="規格1圖層" class="layer spec-layer" id="spec1Layer">
+
+      <!-- 規格2圖層 -->
+      <img src="" alt="規格2圖層" class="layer spec-layer" id="spec2Layer">
+
+      <!-- 規格3圖層 -->
+      <img src="" alt="規格3圖層" class="layer spec-layer" id="spec3Layer">
+
+      <!-- 載入中提示 -->
+      <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+      </div>
+    </div>
+
+    <!-- 規格選擇區 -->
+    <div class="spec-controls">
+      <h3 class="controls-title">選擇規格</h3>
+
+      <!-- 規格1 -->
+      <div class="spec-group">
+        <label for="spec1Select" class="spec-label" id="spec1Label">車種</label>
+        <select id="spec1Select" class="spec-select">
+          <option value="">-- 請選擇 --</option>
+          <!-- 選項由 JavaScript 動態載入 -->
+        </select>
+      </div>
+
+      <!-- 規格2 -->
+      <div class="spec-group">
+        <label for="spec2Select" class="spec-label" id="spec2Label">外圈顏色</label>
+        <select id="spec2Select" class="spec-select">
+          <option value="">-- 請選擇 --</option>
+        </select>
+      </div>
+
+      <!-- 規格3 -->
+      <div class="spec-group">
+        <label for="spec3Select" class="spec-label" id="spec3Label">油箱蓋顏色</label>
+        <select id="spec3Select" class="spec-select">
+          <option value="">-- 請選擇 --</option>
+        </select>
+      </div>
+
+      <!-- 選擇結果顯示 -->
+      <div class="selection-result" id="selectionResult">
+        <p class="result-text">請選擇所有規格以預覽完整效果</p>
+      </div>
+
+      <!-- 前往購買按鈕（可選） -->
+      <a href="#" class="buy-button" id="buyButton" style="display: none;">
+        前往購買此規格組合
+      </a>
+    </div>
+  </div>
+
+  <!-- 設定檔：可以修改這裡來調整規格選項 -->
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

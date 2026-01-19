@@ -1,0 +1,241 @@
+/* BV Shop 商品圖層選擇器樣式 */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Microsoft JhengHei", "微軟正黑體", sans-serif;
+  background-color: #fff;
+  color: #333;
+  line-height: 1.6;
+}
+
+.layer-selector {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 圖層容器 */
+.layer-container {
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+}
+
+/* 圖層樣式 */
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.base-layer {
+  z-index: 1;
+}
+
+.spec-layer {
+  z-index: 2;
+  opacity: 0;
+}
+
+.spec-layer.active {
+  opacity: 1;
+}
+
+#spec1Layer { z-index: 2; }
+#spec2Layer { z-index: 3; }
+#spec3Layer { z-index: 4; }
+
+/* 載入中效果 */
+.loading-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.loading-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top-color: #333;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 規格選擇區 */
+.spec-controls {
+  background-color: #fafafa;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+}
+
+.controls-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+.spec-group {
+  margin-bottom: 15px;
+}
+
+.spec-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #555;
+}
+
+.spec-select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.spec-select:hover {
+  border-color: #999;
+}
+
+.spec-select:focus {
+  outline: none;
+  border-color: #666;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+
+/* 選擇結果 */
+.selection-result {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+}
+
+.result-text {
+  font-size: 14px;
+  color: #666;
+}
+
+.result-text.complete {
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+.result-specs {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #555;
+}
+
+.result-specs li {
+  margin-bottom: 4px;
+}
+
+/* 購買按鈕 */
+.buy-button {
+  display: block;
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #d32f2f;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.buy-button:hover {
+  background-color: #b71c1c;
+}
+
+.buy-button:active {
+  transform: scale(0.98);
+}
+
+/* 響應式設計 */
+@media (max-width: 600px) {
+  .layer-selector {
+    padding: 15px;
+  }
+
+  .layer-container {
+    max-width: 100%;
+  }
+
+  .spec-controls {
+    padding: 15px;
+  }
+
+  .controls-title {
+    font-size: 16px;
+  }
+
+  .spec-select {
+    padding: 12px;
+    font-size: 16px; /* 避免 iOS 自動縮放 */
+  }
+
+  .buy-button {
+    padding: 16px 20px;
+  }
+}
+
+/* 無圖片佔位符 */
+.layer-container.no-base::before {
+  content: "請設定底圖 (images/base.png)";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  color: #999;
+  text-align: center;
+  z-index: 0;
+}
